@@ -1,6 +1,11 @@
 # Sidequest ↗
 
 A home for miscellaneous pages, dashboards, and useful little experiments.
+
+A dark, glowing collection inspired by the digital clock: black and teal backgrounds,
+icy-blue type, and Share Tech Mono (with a local monospace fallback).
+
+Live: https://ix4.github.io/sidequest/ · Clock: https://ix4.github.io/sidequest/pages/clock/
 Plain HTML, CSS, and JavaScript. No Jekyll. No runtime dependencies.
 
 ## Local development

@@ -1,5 +1,13 @@
 [
   {
+    "title": "Digital clock",
+    "kind": "page",
+    "description": "A glowing digital clock. Local time, down to the second.",
+    "path": "pages/clock/",
+    "symbol": "00:00",
+    "color": "cyan"
+  },
+  {
     "title": "Pulse",
     "kind": "dashboard",
     "description": "A tiny dashboard with a big-picture view. Sample data, ready to replace with your own.",
