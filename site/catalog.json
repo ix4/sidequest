@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Pulse",
+    "kind": "dashboard",
+    "description": "A tiny dashboard with a big-picture view. Sample data, ready to replace with your own.",
+    "path": "dashboards/pulse/",
+    "symbol": "\u2582\u2584\u2586\u2588",
+    "color": "purple"
+  },
+  {
+    "title": "Field notes",
+    "kind": "page",
+    "description": "A place for ideas, experiments, and things worth keeping. Your first blank canvas.",
+    "path": "pages/field-notes/",
+    "symbol": "\u2733",
+    "color": "orange"
+  }
+]

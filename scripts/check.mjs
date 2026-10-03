@@ -1,0 +1,7 @@
+import {readFile,stat,readdir} from 'node:fs/promises';
+import path from 'node:path';
+const catalog=JSON.parse(await readFile('site/catalog.json','utf8'));
+const paths=new Set();
+for(const entry of catalog){if(!['page','dashboard'].includes(entry.kind)||!entry.title||!entry.description||!/^(pages|dashboards)\/[a-z0-9-]+\/$/.test(entry.path))throw Error('Invalid catalog entry');if(paths.has(entry.path))throw Error('Duplicate route');paths.add(entry.path);await stat(`site/${entry.path}index.html`)}
+async function walk(dir){for(const item of await readdir(dir,{withFileTypes:true})){const file=path.join(dir,item.name);if(item.isDirectory())await walk(file);else if(file.endsWith('.html')){const html=await readFile(file,'utf8');if(!html.includes('lang="en"')||!html.includes('name="viewport"')||!html.includes('<title>'))throw Error(`Missing metadata: ${file}`);for(const match of html.matchAll(/(?:href|src)="([^"]+)"/g)){const url=match[1];if(/^(https?:|mailto:|#|\/)/.test(url))continue;let target=path.resolve(path.dirname(file),url);if(!target.startsWith(path.resolve('site')+path.sep))throw Error(`Link outside site: ${file}`);if(url.endsWith('/'))target=path.join(target,'index.html');await stat(target).catch(()=>{throw Error(`Broken link: ${file} → ${url}`)})}}}}
+await walk('site');await stat('site/.nojekyll');console.log(`Checked ${catalog.length} entries, local links, and page metadata.`);
